@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prosser Management</title>
+    <title>A _ Landing _ split entry</title>
     <style>
         @font-face {
             font-family: 'JetBrains Mono';
@@ -19,25 +19,20 @@
             padding: 0;
             width: 100%;
             min-height: 100vh;
-            background-color: #0b111e; /* Matching your dark theme look */
+            box-sizing: border-box;
+            background-color: #0b111e;
             font-family: 'JetBrains Mono', monospace;
             color: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-sizing: border-box;
             overflow-x: hidden;
         }
 
-        .split-wrapper {
+        .split-container {
             display: flex;
             width: 100%;
-            max-width: 1440px;
             min-height: 100vh;
-            position: relative;
         }
 
-        .pane {
+        .split-side {
             flex: 1;
             display: flex;
             flex-direction: column;
@@ -45,64 +40,55 @@
             align-items: center;
             padding: 40px;
             text-decoration: none;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
+            transition: background-color 0.3s ease;
         }
 
-        /* Left Side Custom Styling - Prosser Management */
-        .left-pane {
-            background-color: #0f172a; 
+        .left-side {
+            background-color: #0f172a;
             border-right: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .left-pane:hover {
+        .left-side:hover {
             background-color: #111b33;
         }
 
-        /* Right Side Custom Styling - Core Hub */
-        .right-pane {
+        .right-side {
             background-color: #0b111e;
         }
 
-        .right-pane:hover {
+        .right-side:hover {
             background-color: #0f182b;
         }
 
-        .text-group {
-            text-align: center;
-            z-index: 2;
-        }
-
-        .main-heading {
+        .title {
             font-size: 2.8rem;
             font-weight: 400;
             letter-spacing: -0.05em;
-            margin: 0 0 12px 0;
+            margin-bottom: 12px;
+            text-align: center;
             color: #ffffff;
         }
 
-        .sub-heading {
+        .subtitle {
             font-size: 1.1rem;
-            color: #64748b; /* Clean subtle gray */
+            color: #64748b;
             text-transform: uppercase;
             letter-spacing: 0.15em;
-            margin: 0;
+            text-align: center;
         }
 
-        /* Target Mobile devices */
         @media (max-width: 768px) {
-            .split-wrapper {
+            .split-container {
                 flex-direction: column;
             }
-            .pane {
+            .split-side {
                 min-height: 50vh;
                 padding: 30px;
             }
-            .main-heading {
+            .title {
                 font-size: 2.2rem;
             }
-            .sub-heading {
+            .subtitle {
                 font-size: 0.9rem;
             }
         }
@@ -110,19 +96,15 @@
 </head>
 <body>
 
-<div class="split-wrapper">
-    <a href="prosser-home.html" class="pane left-pane">
-        <div class="text-group">
-            <h1 class="main-heading">Prosser Management</h1>
-            <p class="sub-heading">Enter Corporate Site</p>
-        </div>
+<div class="split-container">
+    <a href="A _ Prosser home.html" class="split-side left-side">
+        <h1 class="title">Prosser Management</h1>
+        <p class="subtitle">Enter Site</p>
     </a>
 
-    <a href="prosser-home.html" class="pane right-pane">
-        <div class="text-group">
-            <h1 class="main-heading">Core Hub</h1>
-            <p class="sub-heading">Enter Portal Entry</p>
-        </div>
+    <a href="A _ Prosser home.html" class="split-side right-side">
+        <h1 class="title">Core Hub</h1>
+        <p class="subtitle">Enter Portal</p>
     </a>
 </div>
 
