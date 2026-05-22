@@ -418,9 +418,27 @@
     border-block: 1px solid var(--line);
     padding: 18px 0;
     font-family: var(--serif); font-style: italic; font-size: 22px;
-    overflow: hidden; white-space: nowrap;
+    overflow: hidden;
   }
-  .marquee span { display: inline-block; padding-right: 60px; }
+  .marquee-track {
+    display: flex; width: max-content;
+    animation: marquee-scroll 38s linear infinite;
+  }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+  .marquee-track > span {
+    display: inline-block; flex: none;
+    white-space: nowrap; padding-right: 60px;
+  }
+  @keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; flex-wrap: wrap; width: auto; }
+    .marquee-clone { display: none; }
+  }
+  body.ed-on .marquee-track { animation: none; flex-wrap: wrap; width: auto; }
+  body.ed-on .marquee-clone { display: none; }
   .marquee .sep { color: var(--copper); }
 
   .services {
@@ -1287,6 +1305,10 @@ body.ed-editing a[data-link]:hover .ed-link-edit { display: block; }
         '<span' + de("prosser.home.marquee." + i) + ">" + E(h.marquee[i]) +
         '</span> <em class="sep">\u00b7</em></span>';
     }).join("");
+    var marqueeClone = h.marquee.map(function (_, i) {
+      return '<span class="marquee-clone" aria-hidden="true"><span>' +
+        E(h.marquee[i]) + '</span> <em class="sep">\u00b7</em></span>';
+    }).join("");
     var services = h.services.map(function (s, i) {
       var base = "prosser.home.services." + i;
       var bullets = s.bullets.map(function (_, j) {
@@ -1319,7 +1341,7 @@ body.ed-editing a[data-link]:hover .ed-link-edit { display: block; }
           "<h1" + dh("prosser.home.h1HTML") + ">" + h.h1HTML + "</h1></div>" +
           '<div class="hero-side" data-list="prosser.home.sideParas">' + side + "</div>" +
         "</section>" +
-        '<div class="marquee" data-list="prosser.home.marquee">' + marquee + "</div>" +
+        '<div class="marquee"><div class="marquee-track" data-list="prosser.home.marquee">' + marquee + marqueeClone + "</div></div>" +
         '<section class="services" data-list="prosser.home.services">' + services + "</section>" +
         '<section class="quote"><div>' +
           imgSlot("assets.prosserPortrait", {
